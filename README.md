@@ -44,14 +44,18 @@ To simulate the application, a lightweight HTML file was created and pushed to t
 
 ## Step 2: Continuous Deployment (CI/CD)
 
-Instead of manual FTP uploads, we implemented a fully automated deployment pipeline.
+**Deployment Process Guide:**
+To keep deployments secure and automated, we have implemented a Git-based Continuous Deployment (CD) pipeline. No developer is required to manually transfer files via FTP. 
 
-1. Connected this GitHub repository to a **Vercel** project.
-2. Vercel automatically provisions an SSL certificate (HTTPS) and edge firewall.
-3. Every push to the `main` branch automatically triggers a new build and deployment with zero downtime.
+**How to deploy an update:**
+1. **Push to GitHub:** Developers push their committed changes to the `main` branch (for production) or a `staging` branch (for testing) on GitHub. 
+2. **Automated Build:** Our hosting provider (Vercel) detects the push via webhook, automatically pulls the latest code, and initiates the build process. 
+3. **Live Release:** Once the build passes without errors, the platform atomically swaps the old version with the new version. This results in zero downtime for Remote Hustle users. 
+4. **Rollbacks:** If a bug makes it to production, any admin can go into the hosting dashboard and click "Rollback" on the previous deployment to instantly revert the site to the last stable state.
 
 **Live Production URL:** https://remote-hustle-app.vercel.app/
 
+`[Vercel Dashboard showing successful deployment]`
 ![live Production](images/Live%20Production.JPG)
 
 ---
